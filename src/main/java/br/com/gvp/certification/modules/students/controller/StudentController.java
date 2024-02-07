@@ -1,4 +1,4 @@
-package br.com.gvp.certification.modules.students.controllers;
+package br.com.gvp.certification.modules.students.controller;
 
 import br.com.gvp.certification.modules.students.dto.VerifyHasCertificationDTO;
 import br.com.gvp.certification.modules.students.useCases.VerifyIfHasCertificationUseCase;

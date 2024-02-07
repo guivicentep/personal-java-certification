@@ -1,30 +1,34 @@
 package br.com.gvp.certification.modules.questions.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "alternatives")
-public class AlternativesEntity {
+@NoArgsConstructor
+@Entity(name = "questions")
+public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @Column(length = 50)
+    private String technology;
+
     private String description;
 
-    private boolean isCorrect;
+    @OneToMany
+    @JoinColumn(name = "question_id")
+    private List<Alternatives> alternatives;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
+
 }

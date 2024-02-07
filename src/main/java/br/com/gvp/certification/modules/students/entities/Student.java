@@ -14,7 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "students")
-public class StudentEntity {
+public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -24,7 +24,7 @@ public class StudentEntity {
     private String email;
 
     @OneToMany(mappedBy = "studentEntity")
-    private List<CertificationStudentEntity> certificationStudentEntity;
+    private List<CertificationStudent> certificationStudent;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

@@ -2,8 +2,8 @@ package br.com.gvp.certification.modules.questions.controller;
 
 import br.com.gvp.certification.modules.questions.dto.AlternativesResultDTO;
 import br.com.gvp.certification.modules.questions.dto.QuestionResultDTO;
-import br.com.gvp.certification.modules.questions.entities.AlternativesEntity;
-import br.com.gvp.certification.modules.questions.entities.QuestionEntity;
+import br.com.gvp.certification.modules.questions.entities.Alternatives;
+import br.com.gvp.certification.modules.questions.entities.Question;
 import br.com.gvp.certification.modules.questions.repositories.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,8 +33,7 @@ public class QuestionController {
     }
 
 
-
-    static QuestionResultDTO mapQuestionToDTO(QuestionEntity question) {
+    static QuestionResultDTO mapQuestionToDTO(Question question) {
         var questionResultDTO = QuestionResultDTO.builder()
                 .id(question.getId())
                 .technology(question.getTechnology())
@@ -48,7 +47,7 @@ public class QuestionController {
         return questionResultDTO;
     }
 
-    static AlternativesResultDTO mapAlternativeDTO(AlternativesEntity alternativesResultDTO) {
+    static AlternativesResultDTO mapAlternativeDTO(Alternatives alternativesResultDTO) {
         return AlternativesResultDTO.builder()
                 .id(alternativesResultDTO.getId())
                 .description(alternativesResultDTO.getDescription()).build();
