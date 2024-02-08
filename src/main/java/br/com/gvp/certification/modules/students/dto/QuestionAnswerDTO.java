@@ -5,11 +5,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class QuestionAnswerDTO {
-    private String questionId;
-    private String alternativeId;
+    private UUID questionId;
+    private UUID alternativeId;
+    private boolean isCorrect;
 }

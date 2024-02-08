@@ -1,6 +1,8 @@
 package br.com.gvp.certification.modules.students.controller;
 
+import br.com.gvp.certification.modules.students.dto.StudentCertificationAnswerDTO;
 import br.com.gvp.certification.modules.students.dto.VerifyHasCertificationDTO;
+import br.com.gvp.certification.modules.students.useCases.StudentCertificationAnswersUseCase;
 import br.com.gvp.certification.modules.students.useCases.VerifyIfHasCertificationUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +17,9 @@ public class StudentController {
     @Autowired
     private VerifyIfHasCertificationUseCase verifyIfHasCertificationUseCase;
 
+    @Autowired
+    private StudentCertificationAnswersUseCase studentCertificationAnswersUseCase;
+
     @PostMapping("/verify")
     public String verifyIfHasCertification(@RequestBody VerifyHasCertificationDTO verifyHasCertificationDTO) {
 
@@ -24,5 +29,10 @@ public class StudentController {
             return "Usuário já fez a prova";
         }
         return "Usuário pode fazer a prova";
+    }
+
+    @PostMapping("/certification/answer")
+    public StudentCertificationAnswerDTO certificationAnswerDTO(@RequestBody StudentCertificationAnswerDTO studentCertificationAnswerDTO)  {
+       return this.studentCertificationAnswersUseCase.execute(studentCertificationAnswerDTO);
     }
 }
