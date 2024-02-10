@@ -16,3 +16,5 @@ public class QuestionAnswerDTO {
     private UUID alternativeId;
     private boolean isCorrect;
 }
+
+// 45:00

@@ -2,9 +2,11 @@ package br.com.gvp.certification.modules.students.controller;
 
 import br.com.gvp.certification.modules.students.dto.StudentCertificationAnswerDTO;
 import br.com.gvp.certification.modules.students.dto.VerifyHasCertificationDTO;
+import br.com.gvp.certification.modules.students.entities.CertificationStudent;
 import br.com.gvp.certification.modules.students.useCases.StudentCertificationAnswersUseCase;
 import br.com.gvp.certification.modules.students.useCases.VerifyIfHasCertificationUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +34,12 @@ public class StudentController {
     }
 
     @PostMapping("/certification/answer")
-    public StudentCertificationAnswerDTO certificationAnswerDTO(@RequestBody StudentCertificationAnswerDTO studentCertificationAnswerDTO)  {
-       return this.studentCertificationAnswersUseCase.execute(studentCertificationAnswerDTO);
+    public ResponseEntity<Object> certificationAnswerDTO(@RequestBody StudentCertificationAnswerDTO studentCertificationAnswerDTO) {
+       try {
+           var result =  studentCertificationAnswersUseCase.execute(studentCertificationAnswerDTO);
+           return ResponseEntity.ok().body(result);
+       } catch (Exception e) {
+           return ResponseEntity.badRequest().body(e.getMessage());
+       }
     }
 }

@@ -1,7 +1,9 @@
 package br.com.gvp.certification.modules.students.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -13,6 +15,7 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity(name = "students")
 public class Student {
 
@@ -24,6 +27,7 @@ public class Student {
     private String email;
 
     @OneToMany(mappedBy = "student")
+    @JsonBackReference
     private List<CertificationStudent> certificationStudent;
 
     @CreationTimestamp
